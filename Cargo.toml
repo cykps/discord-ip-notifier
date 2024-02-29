@@ -1,0 +1,15 @@
+[package]
+name = "discord-ip-notifier"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dotenvy = "0.15.7"
+log = "0.4.21"
+simplelog = "0.12.1"
+
+### install reqwest
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
