@@ -15,13 +15,22 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let interval_min: u64 = dotenvy::var("INTERVAL_MIN")?.parse()?;
     let log_file_name = dotenvy::var("LOG_FILE_NAME")?;
     let mut current_ip = String::new();
+    let log_file = match File::options().append(true).open(&log_file_name) {
+        Ok(file) => {
+            file
+        }
+        Err(_) => {
+            File::create(&log_file_name)?
+        }
+    };
     CombinedLogger::init(
         vec![
             TermLogger::new(LevelFilter::Warn, Config::default(), TerminalMode::Mixed, ColorChoice::Auto),
-            WriteLogger::new(LevelFilter::Info, Config::default(), File::create(log_file_name)?)
+            WriteLogger::new(LevelFilter::Info, Config::default(), log_file)
         ]
     )?;
 
+    info!("Start");
     let client = reqwest::Client::new();
     loop {
         match client.get(&checkip_url).send().await {
