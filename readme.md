@@ -12,8 +12,8 @@ cd discord-ip-notifier
 2. Create `.env` file in  the current directory or parents.
 
 ```Dotenv
-DISCORD_WEBHOOK_URL="{Your Discord Webhook URL}" # include 'http(s)://'
-CHECKIP_URL="https://checkip.amazonaws.com/" # include 'http(s)://'
+DISCORD_WEBHOOK_URL="{Your Discord Webhook URL}" #include 'http(s)://'
+CHECKIP_URL="https://checkip.amazonaws.com/" #include 'http(s)://'
 LOG_FILE_NAME="discord-ip-notifier.log"
 INTERVAL_MIN=20 #interval minutes
 ```
